@@ -1,0 +1,10 @@
+mainmenu "Stationary IMU calibration example"
+
+source "Kconfig.zephyr"
+
+config SAMPLE_CALIBRATION_PERSISTENCE
+	bool "Save and restore gyro calibration with Settings"
+	depends on SETTINGS && GPIO
+	help
+	  Restore a saved bias on reset. Hold the user button during reset to
+	  measure and save a bias, including the first calibration.

@@ -1,0 +1,12 @@
+/* XIAO Sense schematic v0.9: R5/R6 = 10k/10k, P1.14 = AIN7.
+ * P1.15 controls the divider's TPS22916 switch, not the board's main supply.
+ */
+/ {
+	zephyr,user {
+		io-channels = <&adc 7>;
+	};
+};
+&vbat_pwr {
+	/delete-property/ regulator-boot-on;
+	/delete-property/ regulator-always-on;
+};

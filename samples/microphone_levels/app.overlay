@@ -1,0 +1,11 @@
+/* XIAO Sense: board pinctrl supplies P1.12 clock and P1.13 data. */
+&pdm20 {
+	status = "okay";
+	clock-source = "PCLK32M";
+};
+&pdm_imu_pwr {
+	regulator-always-on;
+};
+&imu_power_default_on {
+	output-high;
+};

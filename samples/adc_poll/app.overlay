@@ -1,0 +1,8 @@
+/* NCS 3.3.0 XIAO board: AIN0 = P1.04 = XIAO D0/A0.
+ * The board supplies gain 1/4, internal reference, 12 bits, oversampling=8.
+ */
+/ {
+	zephyr,user {
+		io-channels = <&adc 0>;
+	};
+};

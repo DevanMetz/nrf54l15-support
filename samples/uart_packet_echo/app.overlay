@@ -1,0 +1,8 @@
+/* External 3.3 V UART adapter: RX to D6/TX/P2.08, TX to D7/RX/P2.07,
+ * and common GND. UART20 remains the board's USB debug console.
+ */
+&uart21 {
+	status = "okay";
+	current-speed = <115200>;
+	/delete-property/ hw-flow-control;
+};

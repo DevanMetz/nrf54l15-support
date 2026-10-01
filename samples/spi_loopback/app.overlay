@@ -1,0 +1,15 @@
+/* External wire loopback: connect XIAO D10 (SDO/MOSI, P2.02) to
+ * D9 (SDI/MISO, P2.04). D8/P2.01 is SCK; D0/P1.04 is active-low CS.
+ * Leave CS unconnected or observe it with a logic analyzer. No peripheral
+ * should share these pins while the pattern test is running.
+ */
+&xiao_spi {
+	status = "okay";
+	cs-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
+	loopback: loopback@0 {
+		compatible = "vnd,spi-device";
+		reg = <0>;
+		/* SPIM00's prescaler cannot represent 1 MHz; 2 MHz is valid. */
+		spi-max-frequency = <2000000>;
+	};
+};

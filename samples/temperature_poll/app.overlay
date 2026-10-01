@@ -1,0 +1,14 @@
+&temp {
+	status = "okay";
+};
+
+/* Exclusive direct IMU access; keep its shared supply powered. */
+&lsm6ds3tr_c {
+	status = "disabled";
+};
+&pdm_imu_pwr {
+	regulator-always-on;
+};
+&imu_power_default_on {
+	output-high;
+};

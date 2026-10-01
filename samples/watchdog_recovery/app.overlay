@@ -1,0 +1,4 @@
+/* The XIAO watchdog0 alias points to WDT31. */
+&wdt31 {
+	status = "okay";
+};

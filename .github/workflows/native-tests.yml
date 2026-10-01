@@ -1,0 +1,36 @@
+name: Native tests
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - compiler: gcc
+            python: '3.10'
+          - compiler: clang
+            python: '3.13'
+    env:
+      CC: ${{ matrix.compiler }}
+      NRF54L15_PACKET_TEST_BIN: ${{ github.workspace }}/build/native/tests/host/packet_tests
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Configure
+        run: cmake -S . -B build/native -G Ninja -DCMAKE_BUILD_TYPE=Debug
+      - name: Build
+        run: cmake --build build/native
+      - name: C tests
+        run: ctest --test-dir build/native --output-on-failure
+      - name: Python and C interoperability tests
+        run: python -m unittest discover -s tests/python -v

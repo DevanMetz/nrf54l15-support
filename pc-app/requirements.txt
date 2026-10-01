@@ -1,0 +1,2 @@
+# Required only by the live UART clients; codecs and offline tests use stdlib.
+pyserial>=3.5,<4

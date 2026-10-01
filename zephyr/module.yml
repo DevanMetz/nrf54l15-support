@@ -1,0 +1,3 @@
+name: nrf54l15_support
+build:
+  cmake: lib/nrf54l15

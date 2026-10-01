@@ -1,0 +1,8 @@
+/* Connect D6/TX/P2.08 to D7/RX/P2.07 for local loopback.
+ * UART20 remains the USB debug bridge's console.
+ */
+&uart21 {
+	status = "okay";
+	current-speed = <115200>;
+	/delete-property/ hw-flow-control;
+};
